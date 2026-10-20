@@ -11,6 +11,7 @@
   --accent: #dd3620;
 }
 * { box-sizing: border-box; }
+[hidden] { display: none !important; }
 body { margin: 0; background: var(--bg); color: var(--text); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", sans-serif; padding-bottom: 96px; }
 button { font: inherit; color: inherit; cursor: pointer; }
 .red { color: #f87171; } .green { color: #4ade80; }

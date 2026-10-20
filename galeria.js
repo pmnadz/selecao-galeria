@@ -322,7 +322,7 @@
   start().catch((e) => {
     $("title").textContent = "Galeria indisponível";
     $("lede").textContent = e.message;
-    $("bar").hidden = true;
-    $("tab-fotos").hidden = true;
+    for (const id of ["bar", "tab-fotos", "filters", "me"]) $(id).hidden = true;
+    document.querySelector(".tabs").hidden = true;
   });
 })();
