@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Seleção de fotos</title>
+<link rel="stylesheet" href="galeria.css">
+</head>
+<body>
+<header class="top">
+  <div class="top-row">
+    <div>
+      <h1 id="title">Carregando…</h1>
+      <p class="lede" id="lede"></p>
+    </div>
+    <button class="me" id="me" type="button"></button>
+  </div>
+  <div class="top-row">
+    <nav class="tabs" role="tablist">
+      <button type="button" role="tab" data-tab="fotos" aria-selected="true">Fotos</button>
+      <button type="button" role="tab" data-tab="comentarios" aria-selected="false">Comentários <span id="comment-count"></span></button>
+    </nav>
+    <div class="filters" id="filters">
+      <button type="button" data-filter="todas" class="on">Todas <b id="n-todas"></b></button>
+      <button type="button" data-filter="aprovada">Aprovadas <b id="n-aprovada"></b></button>
+      <button type="button" data-filter="recusada">Recusadas <b id="n-recusada"></b></button>
+      <button type="button" data-filter="sem">Sem voto <b id="n-sem"></b></button>
+    </div>
+  </div>
+  <div class="banner" id="banner" hidden></div>
+</header>
+
+<main>
+  <section id="tab-fotos">
+    <p class="howto">Toque no lado <b class="red">esquerdo</b> da foto pra recusar, no <b class="green">direito</b> pra aprovar e no meio pra ampliar. Tocar de novo desfaz. Seus votos ficam guardados neste aparelho até você enviar. Se mais de uma pessoa for votar, cada uma vota no próprio aparelho e envia a sua resposta.</p>
+    <div class="grid" id="grid"></div>
+  </section>
+  <section id="tab-comentarios" hidden>
+    <form class="comment-form" id="general-form">
+      <textarea name="body" rows="3" placeholder="Comentário geral sobre a seleção (ex.: prefiro as fotos com o palco cheio)"></textarea>
+      <button type="submit">Comentar</button>
+    </form>
+    <ol class="comment-list" id="all-comments"></ol>
+  </section>
+</main>
+
+<footer class="bar" id="bar">
+  <div class="unvoted">
+    <span>Fotos que você não votar devem ser</span>
+    <div class="seg" id="unvoted-seg">
+      <button type="button" data-unvoted="descartar">descartadas</button>
+      <button type="button" data-unvoted="manter">mantidas</button>
+    </div>
+    <small id="unvoted-hint"></small>
+  </div>
+  <button type="button" class="submit" id="submit">Enviar seleção</button>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lb-stage" id="lb-stage">
+    <img id="lb-img" alt="">
+    <button type="button" class="lb-nav prev" id="lb-prev" aria-label="Foto anterior">‹</button>
+    <button type="button" class="lb-nav next" id="lb-next" aria-label="Próxima foto">›</button>
+    <button type="button" class="lb-close" id="lb-close" aria-label="Fechar">✕</button>
+    <span class="lb-hint">Clique na foto pra ver em tamanho real</span>
+  </div>
+  <aside class="lb-side">
+    <div class="lb-head">
+      <span class="lb-num" id="lb-num"></span>
+      <span class="lb-name" id="lb-name"></span>
+    </div>
+    <div class="lb-actions">
+      <button type="button" class="deny" id="lb-deny">Recusar <kbd>R</kbd></button>
+      <button type="button" class="approve" id="lb-approve">Aprovar <kbd>A</kbd></button>
+    </div>
+    <p class="lb-who" id="lb-who"></p>
+    <h2>Comentários desta foto</h2>
+    <ol class="comment-list" id="lb-comments"></ol>
+    <form class="comment-form" id="photo-form">
+      <textarea name="body" rows="3" placeholder="Ex.: dá pra tirar o fio do fundo?"></textarea>
+      <button type="submit">Comentar</button>
+    </form>
+  </aside>
+</div>
+
+<dialog id="name-dialog">
+  <form method="dialog" id="name-form">
+    <h2>Como você se chama?</h2>
+    <p>Seu nome vai junto da sua resposta, pro fotógrafo saber quem escolheu o quê.</p>
+    <input name="name" maxlength="60" autocomplete="given-name" required>
+    <button type="submit">Começar</button>
+  </form>
+</dialog>
+
+<dialog id="send-dialog">
+  <div>
+    <h2>Enviar sua seleção</h2>
+    <p id="send-summary"></p>
+    <p>Mande a mensagem abaixo pro fotógrafo, sem apagar o código do final.</p>
+    <textarea id="send-text" rows="7" readonly></textarea>
+    <div class="dialog-actions wrap">
+      <button type="button" class="ghost" id="send-close">Voltar</button>
+      <button type="button" class="ghost" id="send-copy">Copiar</button>
+      <a class="btn" id="send-mail" target="_blank" rel="noopener">E-mail</a>
+      <a class="btn" id="send-wa" target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+</dialog>
+
+<div class="toast" id="toast" hidden></div>
+<script src="config.js"></script>
+<script src="galeria.js"></script>
+</body>
+</html>
